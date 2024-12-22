@@ -105,8 +105,8 @@ class ImageRater:
                     background: #0e1117;
                     border: 0px solid #666;
                     border-radius: 10%;
-                    padding: 10px 15px;
-                    margin: 0 0px;
+                    padding: 5px 5px;
+                    margin: 0 5px;
                     cursor: pointer;
                 }
                 .stRadio > div[role='radiogroup'] > label:hover {
