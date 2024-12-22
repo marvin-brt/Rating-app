@@ -90,32 +90,36 @@ class ImageRater:
             # Rating inputs with descriptions
             st.write("### Please rate the following aspects:")
             
+            st.write("1. Overall Image Aesthetics")
+            st.write("*(1 = least aesthetically pleasing, 7 = most aesthetically pleasing)*")
             overall_rating = st.select_slider(
-                "1. Overall Image Aesthetics:",
+                "Overall Rating",
                 options=range(1, 8),
-                value=4,
-                help="1 = least aesthetically pleasing, 7 = most aesthetically pleasing"
+                value=4
             )
             
+            st.write("\n2. Shape Aesthetics")
+            st.write("*(1 = least aesthetically pleasing, 7 = most aesthetically pleasing)*")
             shape_rating = st.select_slider(
-                "2. Shape Aesthetics:",
+                "Shape Rating",
                 options=range(1, 8),
-                value=4,
-                help="1 = least aesthetically pleasing, 7 = most aesthetically pleasing"
+                value=4
             )
             
+            st.write("\n3. Color Aesthetics")
+            st.write("*(1 = least aesthetically pleasing, 7 = most aesthetically pleasing)*")
             color_rating = st.select_slider(
-                "3. Color Aesthetics:",
+                "Color Rating",
                 options=range(1, 8),
-                value=4,
-                help="1 = least aesthetically pleasing, 7 = most aesthetically pleasing"
+                value=4
             )
             
+            st.write("\n4. Label Aesthetics")
+            st.write("*(1 = least aesthetically pleasing, 7 = most aesthetically pleasing)*")
             label_rating = st.select_slider(
-                "4. Label Aesthetics:",
+                "Label Rating",
                 options=range(1, 8),
-                value=4,
-                help="1 = least aesthetically pleasing, 7 = most aesthetically pleasing"
+                value=4
             )
 
             # Navigation buttons
