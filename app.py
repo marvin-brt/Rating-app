@@ -87,40 +87,72 @@ class ImageRater:
                 st.error(f"Error loading image: {str(e)}")
                 return
 
-            # Rating inputs with descriptions
+                        # Rating inputs with descriptions
             st.write("### Please rate the following aspects:")
             
+            # Custom CSS for the layout
+            st.markdown("""
+                <style>
+                .rating-scale {
+                    font-size: 0.9em;
+                    color: #666;
+                    margin-top: -1em;
+                    margin-bottom: 1em;
+                }
+                </style>
+            """, unsafe_allow_html=True)
+
+            # Overall Rating
             st.write("1. Overall Image Aesthetics")
-            st.write("*(1 = least aesthetically pleasing, 7 = most aesthetically pleasing)*")
-            overall_rating = st.select_slider(
-                "Overall Rating",
-                options=range(1, 8),
-                value=4
-            )
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                overall_rating = st.select_slider(
+                    "Overall Rating",
+                    options=range(1, 8),
+                    value=4,
+                    label_visibility="collapsed"
+                )
+            with col2:
+                st.markdown('<p class="rating-scale">1 = least pleasing<br>7 = most pleasing</p>', unsafe_allow_html=True)
             
-            st.write("\n2. Shape Aesthetics")
-            st.write("*(1 = least aesthetically pleasing, 7 = most aesthetically pleasing)*")
-            shape_rating = st.select_slider(
-                "Shape Rating",
-                options=range(1, 8),
-                value=4
-            )
+            # Shape Rating
+            st.write("2. Shape Aesthetics")
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                shape_rating = st.select_slider(
+                    "Shape Rating",
+                    options=range(1, 8),
+                    value=4,
+                    label_visibility="collapsed"
+                )
+            with col2:
+                st.markdown('<p class="rating-scale">1 = least pleasing<br>7 = most pleasing</p>', unsafe_allow_html=True)
             
-            st.write("\n3. Color Aesthetics")
-            st.write("*(1 = least aesthetically pleasing, 7 = most aesthetically pleasing)*")
-            color_rating = st.select_slider(
-                "Color Rating",
-                options=range(1, 8),
-                value=4
-            )
+            # Color Rating
+            st.write("3. Color Aesthetics")
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                color_rating = st.select_slider(
+                    "Color Rating",
+                    options=range(1, 8),
+                    value=4,
+                    label_visibility="collapsed"
+                )
+            with col2:
+                st.markdown('<p class="rating-scale">1 = least pleasing<br>7 = most pleasing</p>', unsafe_allow_html=True)
             
-            st.write("\n4. Label Aesthetics")
-            st.write("*(1 = least aesthetically pleasing, 7 = most aesthetically pleasing)*")
-            label_rating = st.select_slider(
-                "Label Rating",
-                options=range(1, 8),
-                value=4
-            )
+            # Label Rating
+            st.write("4. Label Aesthetics")
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                label_rating = st.select_slider(
+                    "Label Rating",
+                    options=range(1, 8),
+                    value=4,
+                    label_visibility="collapsed"
+                )
+            with col2:
+                st.markdown('<p class="rating-scale">1 = least pleasing<br>7 = most pleasing</p>', unsafe_allow_html=True)
 
             # Navigation buttons
             st.write("---")
