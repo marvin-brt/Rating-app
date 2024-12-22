@@ -90,69 +90,109 @@ class ImageRater:
                         # Rating inputs with descriptions
             st.write("### Please rate the following aspects:")
             
-            # Custom CSS for the layout
+                        # Custom CSS for radio buttons as circles
             st.markdown("""
                 <style>
-                .rating-scale {
-                    font-size: 0.9em;
+                .stRadio > label {
+                    display: none;
+                }
+                .stRadio > div {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 0;
+                }
+                .stRadio > div[role='radiogroup'] > label {
+                    background: #262730;
+                    border: 1px solid #666;
+                    border-radius: 50%;
+                    padding: 10px 15px;
+                    margin: 0 5px;
+                    cursor: pointer;
+                }
+                .stRadio > div[role='radiogroup'] > label:hover {
+                    border-color: #fff;
+                }
+                .stRadio > div[role='radiogroup'] > label[data-checked='true'] {
+                    background: #ff4b4b;
+                    border-color: #ff4b4b;
+                }
+                .rating-labels {
+                    display: flex;
+                    justify-content: space-between;
                     color: #666;
-                    margin-top: -1em;
-                    margin-bottom: 1em;
+                    font-size: 0.9em;
+                    margin-top: 5px;
                 }
                 </style>
             """, unsafe_allow_html=True)
 
             # Overall Rating
             st.write("1. Overall Image Aesthetics")
-            col1, col2 = st.columns([3, 1])
-            with col1:
-                overall_rating = st.select_slider(
-                    "Overall Rating",
-                    options=range(1, 8),
-                    value=4,
-                    label_visibility="collapsed"
-                )
-            with col2:
-                st.markdown('<p class="rating-scale">1 = least pleasing<br>7 = most pleasing</p>', unsafe_allow_html=True)
-            
+            overall_rating = st.radio(
+                "Overall Rating",
+                options=["1", "2", "3", "4", "5", "6", "7"],
+                horizontal=True,
+                key="overall",
+                label_visibility="collapsed"
+            )
+            st.markdown(
+                '<div class="rating-labels">'
+                '<div>1 = least aesthetically pleasing</div>'
+                '<div>7 = most aesthetically pleasing</div>'
+                '</div>',
+                unsafe_allow_html=True
+            )
+
             # Shape Rating
-            st.write("2. Shape Aesthetics")
-            col1, col2 = st.columns([3, 1])
-            with col1:
-                shape_rating = st.select_slider(
-                    "Shape Rating",
-                    options=range(1, 8),
-                    value=4,
-                    label_visibility="collapsed"
-                )
-            with col2:
-                st.markdown('<p class="rating-scale">1 = least pleasing<br>7 = most pleasing</p>', unsafe_allow_html=True)
-            
+            st.write("\n2. Shape Aesthetics")
+            shape_rating = st.radio(
+                "Shape Rating",
+                options=["1", "2", "3", "4", "5", "6", "7"],
+                horizontal=True,
+                key="shape",
+                label_visibility="collapsed"
+            )
+            st.markdown(
+                '<div class="rating-labels">'
+                '<div>1 = least aesthetically pleasing</div>'
+                '<div>7 = most aesthetically pleasing</div>'
+                '</div>',
+                unsafe_allow_html=True
+            )
+
             # Color Rating
-            st.write("3. Color Aesthetics")
-            col1, col2 = st.columns([3, 1])
-            with col1:
-                color_rating = st.select_slider(
-                    "Color Rating",
-                    options=range(1, 8),
-                    value=4,
-                    label_visibility="collapsed"
-                )
-            with col2:
-                st.markdown('<p class="rating-scale">1 = least pleasing<br>7 = most pleasing</p>', unsafe_allow_html=True)
-            
+            st.write("\n3. Color Aesthetics")
+            color_rating = st.radio(
+                "Color Rating",
+                options=["1", "2", "3", "4", "5", "6", "7"],
+                horizontal=True,
+                key="color",
+                label_visibility="collapsed"
+            )
+            st.markdown(
+                '<div class="rating-labels">'
+                '<div>1 = least aesthetically pleasing</div>'
+                '<div>7 = most aesthetically pleasing</div>'
+                '</div>',
+                unsafe_allow_html=True
+            )
+
             # Label Rating
-            st.write("4. Label Aesthetics")
-            col1, col2 = st.columns([3, 1])
-            with col1:
-                label_rating = st.select_slider(
-                    "Label Rating",
-                    options=range(1, 8),
-                    value=4,
-                    label_visibility="collapsed"
-                )
-            with col2:
-                st.markdown('<p class="rating-scale">1 = least pleasing<br>7 = most pleasing</p>', unsafe_allow_html=True)
+            st.write("\n4. Label Aesthetics")
+            label_rating = st.radio(
+                "Label Rating",
+                options=["1", "2", "3", "4", "5", "6", "7"],
+                horizontal=True,
+                key="label",
+                label_visibility="collapsed"
+            )
+            st.markdown(
+                '<div class="rating-labels">'
+                '<div>1 = least aesthetically pleasing</div>'
+                '<div>7 = most aesthetically pleasing</div>'
+                '</div>',
+                unsafe_allow_html=True
+            )
 
             # Navigation buttons
             st.write("---")
@@ -169,10 +209,10 @@ class ImageRater:
                     st.session_state.ratings.append({
                         'Rater': st.session_state.rater_name,
                         'Image': current_image,
-                        'Overall_Rating': overall_rating,
-                        'Shape_Rating': shape_rating,
-                        'Color_Rating': color_rating,
-                        'Label_Rating': label_rating,
+                        'Overall_Rating': int(overall_rating),
+                        'Shape_Rating': int(shape_rating),
+                        'Color_Rating': int(color_rating),
+                        'Label_Rating': int(label_rating),
                         'Timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     })
                     
