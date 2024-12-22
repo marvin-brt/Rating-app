@@ -75,135 +75,140 @@ class ImageRater:
         st.progress(progress)
         st.write(f"Image {st.session_state.current_image_index + 1} of {len(images)}")
 
-        # Display current image
         if st.session_state.current_image_index < len(images):
             current_image = images[st.session_state.current_image_index]
             img_path = os.path.join("images", current_image)
-            
-            try:
-                img = Image.open(img_path)
-                st.image(img, width=400)
-            except Exception as e:
-                st.error(f"Error loading image: {str(e)}")
-                return
 
-            # Rating inputs with descriptions
-            st.write("### Please rate the following aspects:")
-            
-            # Custom CSS for radio buttons as circles
-            st.markdown("""
-                <style>
-                .stRadio > label {
-                    display: none;
-                }
-                .stRadio > div {
-                    display: flex;
-                    justify-content: space-between;
-                    margin-bottom: 0;
-                }
-                .stRadio > div[role='radiogroup'] > label {
-                    background: #0e1117;
-                    border: 0px solid #666;
-                    border-radius: 10%;
-                    padding: 5px 5px;
-                    margin: 0 5px;
-                    cursor: pointer;
-                }
-                .stRadio > div[role='radiogroup'] > label:hover {
-                    border-color: #fff;
-                }
-                .stRadio > div[role='radiogroup'] > label[data-checked='true'] {
-                    background: #ff4b4b;
-                    border-color: #ff4b4b;
-                }
-                .rating-labels {
-                    display: flex;
-                    justify-content: space-between;
-                    color: #666;
-                    font-size: 0.9em;
-                    margin-top: 5px;
-                }
-                </style>
-            """, unsafe_allow_html=True)
+            # Create two columns: one for image, one for ratings
+            col1, col2 = st.columns([4, 6])  # Adjust ratio as needed
 
-            # Overall Rating
-            st.write("1. Overall Image Aesthetics")
-            overall_rating = st.radio(
-                "Overall Rating",
-                options=["1", "2", "3", "4", "5", "6", "7"],
-                horizontal=True,
-                key="overall",
-                label_visibility="collapsed"
-            )
-            st.markdown(
-                '<div class="rating-labels">'
-                '<div>1 = least aesthetically pleasing</div>'
-                '<div>7 = most aesthetically pleasing</div>'
-                '</div>',
-                unsafe_allow_html=True
-            )
-
-            # Shape Rating
-            st.write("\n2. Shape Aesthetics")
-            shape_rating = st.radio(
-                "Shape Rating",
-                options=["1", "2", "3", "4", "5", "6", "7"],
-                horizontal=True,
-                key="shape",
-                label_visibility="collapsed"
-            )
-            st.markdown(
-                '<div class="rating-labels">'
-                '<div>1 = least aesthetically pleasing</div>'
-                '<div>7 = most aesthetically pleasing</div>'
-                '</div>',
-                unsafe_allow_html=True
-            )
-
-            # Color Rating
-            st.write("\n3. Color Aesthetics")
-            color_rating = st.radio(
-                "Color Rating",
-                options=["1", "2", "3", "4", "5", "6", "7"],
-                horizontal=True,
-                key="color",
-                label_visibility="collapsed"
-            )
-            st.markdown(
-                '<div class="rating-labels">'
-                '<div>1 = least aesthetically pleasing</div>'
-                '<div>7 = most aesthetically pleasing</div>'
-                '</div>',
-                unsafe_allow_html=True
-            )
-
-            # Label Rating
-            st.write("\n4. Label Aesthetics")
-            label_rating = st.radio(
-                "Label Rating",
-                options=["1", "2", "3", "4", "5", "6", "7"],
-                horizontal=True,
-                key="label",
-                label_visibility="collapsed"
-            )
-            st.markdown(
-                '<div class="rating-labels">'
-                '<div>1 = least aesthetically pleasing</div>'
-                '<div>7 = most aesthetically pleasing</div>'
-                '</div>',
-                unsafe_allow_html=True
-            )
-
-            # Navigation buttons
-            st.write("---")
-            col1, col2 = st.columns(2)
+            # Image column
             with col1:
+                try:
+                    img = Image.open(img_path)
+                    st.image(img, width=400)
+                except Exception as e:
+                    st.error(f"Error loading image: {str(e)}")
+                    return
+
+            # Ratings column
+            with col2:
+                st.write("### Please rate the following aspects:")
+                
+                # Custom CSS (same as before)
+                st.markdown("""
+                    <style>
+                    .stRadio > label {
+                        display: none;
+                    }
+                    .stRadio > div {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 0;
+                    }
+                    .stRadio > div[role='radiogroup'] > label {
+                        background: #0e1117;
+                        border: 0px solid #666;
+                        border-radius: 10%;
+                        padding: 5px 5px;
+                        margin: 0 5px;
+                        cursor: pointer;
+                    }
+                    .stRadio > div[role='radiogroup'] > label:hover {
+                        border-color: #fff;
+                    }
+                    .stRadio > div[role='radiogroup'] > label[data-checked='true'] {
+                        background: #ff4b4b;
+                        border-color: #ff4b4b;
+                    }
+                    .rating-labels {
+                        display: flex;
+                        justify-content: space-between;
+                        color: #666;
+                        font-size: 0.9em;
+                        margin-top: 5px;
+                    }
+                    </style>
+                """, unsafe_allow_html=True)
+
+                # Overall Rating
+                st.write("1. Overall Image Aesthetics")
+                overall_rating = st.radio(
+                    "Overall Rating",
+                    options=["1", "2", "3", "4", "5", "6", "7"],
+                    horizontal=True,
+                    key="overall",
+                    label_visibility="collapsed"
+                )
+                st.markdown(
+                    '<div class="rating-labels">'
+                    '<div>1 = least aesthetically pleasing</div>'
+                    '<div>7 = most aesthetically pleasing</div>'
+                    '</div>',
+                    unsafe_allow_html=True
+                )
+
+                # Shape Rating
+                st.write("\n2. Shape Aesthetics")
+                shape_rating = st.radio(
+                    "Shape Rating",
+                    options=["1", "2", "3", "4", "5", "6", "7"],
+                    horizontal=True,
+                    key="shape",
+                    label_visibility="collapsed"
+                )
+                st.markdown(
+                    '<div class="rating-labels">'
+                    '<div>1 = least aesthetically pleasing</div>'
+                    '<div>7 = most aesthetically pleasing</div>'
+                    '</div>',
+                    unsafe_allow_html=True
+                )
+
+                # Color Rating
+                st.write("\n3. Color Aesthetics")
+                color_rating = st.radio(
+                    "Color Rating",
+                    options=["1", "2", "3", "4", "5", "6", "7"],
+                    horizontal=True,
+                    key="color",
+                    label_visibility="collapsed"
+                )
+                st.markdown(
+                    '<div class="rating-labels">'
+                    '<div>1 = least aesthetically pleasing</div>'
+                    '<div>7 = most aesthetically pleasing</div>'
+                    '</div>',
+                    unsafe_allow_html=True
+                )
+
+                # Label Rating
+                st.write("\n4. Label Aesthetics")
+                label_rating = st.radio(
+                    "Label Rating",
+                    options=["1", "2", "3", "4", "5", "6", "7"],
+                    horizontal=True,
+                    key="label",
+                    label_visibility="collapsed"
+                )
+                st.markdown(
+                    '<div class="rating-labels">'
+                    '<div>1 = least aesthetically pleasing</div>'
+                    '<div>7 = most aesthetically pleasing</div>'
+                    '</div>',
+                    unsafe_allow_html=True
+                )
+
+            # Navigation buttons below both columns
+            st.write("---")
+            nav_col1, nav_col2 = st.columns(2)
+            with nav_col1:
                 if st.button("⬅️ Previous", key="prev"):
                     if st.session_state.current_image_index > 0:
                         st.session_state.current_image_index -= 1
                         st.rerun()
 
-            with col2:
+            with nav_col2:
                 if st.button("Next ➡️", key="next"):
                     # Save ratings
                     st.session_state.ratings.append({
@@ -228,7 +233,7 @@ class ImageRater:
             # Save progress button
             if st.button("💾 Save Progress", key="save"):
                 self.save_ratings()
-                st.success("Progress saved! Click the download button above to save your ratings.")
+                st.success("Progress saved! Click the download button above to save your ratings.")  
 
 if __name__ == "__main__":
     st.set_page_config(
