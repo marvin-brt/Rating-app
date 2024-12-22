@@ -102,9 +102,9 @@ class ImageRater:
                     margin-bottom: 0;
                 }
                 .stRadio > div[role='radiogroup'] > label {
-                    background: #262730;
-                    border: 1px solid #666;
-                    border-radius: 0%;
+                    background: #0e1117;
+                    border: 0px solid #666;
+                    border-radius: 10%;
                     padding: 10px 15px;
                     margin: 0 5px;
                     cursor: pointer;
