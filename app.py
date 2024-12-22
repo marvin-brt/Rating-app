@@ -87,10 +87,10 @@ class ImageRater:
                 st.error(f"Error loading image: {str(e)}")
                 return
 
-                        # Rating inputs with descriptions
+            # Rating inputs with descriptions
             st.write("### Please rate the following aspects:")
             
-                        # Custom CSS for radio buttons as circles
+            # Custom CSS for radio buttons as circles
             st.markdown("""
                 <style>
                 .stRadio > label {
@@ -104,7 +104,7 @@ class ImageRater:
                 .stRadio > div[role='radiogroup'] > label {
                     background: #262730;
                     border: 1px solid #666;
-                    border-radius: 50%;
+                    border-radius: 0%;
                     padding: 10px 15px;
                     margin: 0 5px;
                     cursor: pointer;
