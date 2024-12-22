@@ -132,7 +132,7 @@ class ImageRater:
                 """, unsafe_allow_html=True)
 
                 # Overall Rating
-                st.write("1. Overall Image Aesthetics")
+                st.write("1. Overall Bottle Aesthetics")
                 overall_rating = st.radio(
                     "Overall Rating",
                     options=["1", "2", "3", "4", "5", "6", "7"],
