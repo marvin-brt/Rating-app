@@ -61,7 +61,7 @@ class ImageRater:
         st.write("### Welcome to the Bottle Rating Study!")
         st.write("""
         Please enter your name to begin rating the bottles.
-        You will be rating each bottle on four different aesthetic aspects using a 1-7 scale.
+        You will be rating each bottle on its overall aesthetic using a 1-7 scale.
         """)
         
         rater_name = st.text_input("Enter your name:", key="name_input")
@@ -93,7 +93,7 @@ class ImageRater:
 
             # Ratings column
             with col2:
-                st.write("### Please rate the following aspects:")
+                st.write("### Please rate the following aspect:")
                 
                 # Custom CSS (same as before)
                 st.markdown("""
@@ -132,63 +132,12 @@ class ImageRater:
                 """, unsafe_allow_html=True)
 
                 # Overall Rating
-                st.write("1. Overall Bottle Aesthetics")
+                st.write("Overall Bottle Aesthetics")
                 overall_rating = st.radio(
                     "Overall Rating",
                     options=["1", "2", "3", "4", "5", "6", "7"],
                     horizontal=True,
                     key="overall",
-                    label_visibility="collapsed"
-                )
-                st.markdown(
-                    '<div class="rating-labels">'
-                    '<div>1 = least aesthetically pleasing</div>'
-                    '<div>7 = most aesthetically pleasing</div>'
-                    '</div>',
-                    unsafe_allow_html=True
-                )
-
-                # Shape Rating
-                st.write("\n2. Shape Aesthetics")
-                shape_rating = st.radio(
-                    "Shape Rating",
-                    options=["1", "2", "3", "4", "5", "6", "7"],
-                    horizontal=True,
-                    key="shape",
-                    label_visibility="collapsed"
-                )
-                st.markdown(
-                    '<div class="rating-labels">'
-                    '<div>1 = least aesthetically pleasing</div>'
-                    '<div>7 = most aesthetically pleasing</div>'
-                    '</div>',
-                    unsafe_allow_html=True
-                )
-
-                # Color Rating
-                st.write("\n3. Color Aesthetics")
-                color_rating = st.radio(
-                    "Color Rating",
-                    options=["1", "2", "3", "4", "5", "6", "7"],
-                    horizontal=True,
-                    key="color",
-                    label_visibility="collapsed"
-                )
-                st.markdown(
-                    '<div class="rating-labels">'
-                    '<div>1 = least aesthetically pleasing</div>'
-                    '<div>7 = most aesthetically pleasing</div>'
-                    '</div>',
-                    unsafe_allow_html=True
-                )
-
-                # Label Rating
-                st.write("\n4. Label Aesthetics")
-                label_rating = st.radio(
-                    "Label Rating",
-                    options=["1", "2", "3", "4", "5", "6", "7"],
-                    horizontal=True,
-                    key="label",
                     label_visibility="collapsed"
                 )
                 st.markdown(
@@ -215,9 +164,6 @@ class ImageRater:
                         'Rater': st.session_state.rater_name,
                         'Image': current_image,
                         'Overall_Rating': int(overall_rating),
-                        'Shape_Rating': int(shape_rating),
-                        'Color_Rating': int(color_rating),
-                        'Label_Rating': int(label_rating),
                         'Timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     })
                     
